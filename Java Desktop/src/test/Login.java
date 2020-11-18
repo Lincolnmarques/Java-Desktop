@@ -8,11 +8,14 @@ import java.awt.event.ActionListener;
 import javax.swing.JButton;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
 import javax.swing.JTextField;
 
 public class Login extends JFrame implements ActionListener{
 	
+	JTextField login;
+	JPasswordField senha;
 	JButton logar, cancelar;
 	
 	public Login(){
@@ -20,16 +23,20 @@ public class Login extends JFrame implements ActionListener{
 	    
 	    logar = new JButton("Logar");
 	    logar.addActionListener(this);
+	    	
 	    
 	    cancelar = new JButton("Cancelar");
 	    cancelar.addActionListener(this);
 	    
+	    login = new JTextField();
+	    senha =	new JPasswordField();		
+	    
 	    Container c = getContentPane();
 	    c.setLayout(new GridLayout(3,2));
-	    c.add(new JLabel("Login:"));
-	    c.add(new JTextField());
+	    c.add(new JLabel("Login"));
+	    c.add(login);
 	    c.add(new JLabel("Senha:"));
-	    c.add(new JPasswordField());
+	    c.add(senha); 
 	    c.add(logar);
 	    c.add(cancelar);
 	    
@@ -51,10 +58,18 @@ public class Login extends JFrame implements ActionListener{
 		public void actionPerformed(ActionEvent e) {
 			
 			if(e.getSource() == logar){
-			
-            System.out.println("Clicou no logar");
+				
+			String s = "Login:" + login.getText()
+			        + "\nsenha:" + new String(senha.getPassword());
+                    JOptionPane.showMessageDialog(null, s);
 			}
 			
+			else if(e.getSource() == cancelar) {
+				
+				login.setText("");
+				senha.setText("");
+				
+			    }
 		}
 
 }			
